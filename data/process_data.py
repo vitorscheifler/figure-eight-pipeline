@@ -1,16 +1,44 @@
 import sys
+import pandas as pd
+from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
-    pass
+    """Read messages file and categories dfile and merge into a dataframe"""
+
+    messages = pd.read_csv(messages_filepath)
+    categories = pd.read_csv(categories_filepath)
+    df = pd.merge(messages, categories, on='id')
+    return df
 
 
 def clean_data(df):
-    pass
+    """Takes a dataframe and split, convert categories and remove duplicates """
+
+    categories = df.categories.str.split(';', expand=True)
+    cat_names = [w.split('-')[0] for w in categories.iloc[0]]
+    categories.columns = cat_names
+
+    for column in categories:
+        categories[column] = categories[column].apply(lambda i: i[-1:])
+
+    categories[column] = categories[column].astype('int64')
+
+    df = df.drop('categories', axis=1)
+
+    df = pd.concat([df, categories], axis=1)
+
+    df = df.drop_duplicates()
+    # Handling unexpected value for "related" category.
+    df.drop(df.related.loc[df.related == 2].index, inplace=True)
+
+    return df
 
 
 def save_data(df, database_filename):
-    pass  
+    engine = create_engine('sqlite:///'+ database_filename)
+    engine.execute("DROP TABLE IF EXISTS messages")
+    df.to_sql('messages', engine, index=False)
 
 
 def main():
@@ -24,12 +52,12 @@ def main():
 
         print('Cleaning data...')
         df = clean_data(df)
-        
+
         print('Saving data...\n    DATABASE: {}'.format(database_filepath))
         save_data(df, database_filepath)
-        
+
         print('Cleaned data saved to database!')
-    
+
     else:
         print('Please provide the filepaths of the messages and categories '\
               'datasets as the first and second argument respectively, as '\
