@@ -21,8 +21,7 @@ def clean_data(df):
 
     for column in categories:
         categories[column] = categories[column].apply(lambda i: i[-1:])
-
-    categories[column] = categories[column].astype('int64')
+        categories[column] = categories[column].astype('int64')
 
     df = df.drop('categories', axis=1)
 
