@@ -35,6 +35,7 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    """Create sqlite database and save the df into a table"""
     engine = create_engine('sqlite:///'+ database_filename)
     engine.execute("DROP TABLE IF EXISTS messages")
     df.to_sql('messages', engine, index=False)

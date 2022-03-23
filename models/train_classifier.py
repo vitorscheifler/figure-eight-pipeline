@@ -47,7 +47,7 @@ def tokenize(text):
     return tokens
 
 def build_model():
-
+    """Create and return a tuned pipeline"""
     pipeline = Pipeline([('vect', CountVectorizer(tokenizer=tokenize)),
                          ('tfidf', TfidfTransformer()),
                          ('clf', MultiOutputClassifier(AdaBoostClassifier()))])
@@ -60,6 +60,7 @@ def build_model():
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """Returns classification metrics for each class and the same metrics for the overall model"""
     Y_pred = model.predict(X_test)
     Y_pred = pd.DataFrame(Y_pred).reset_index(drop=True)
     Y_pred.columns = Y_test.columns
