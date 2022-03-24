@@ -5,7 +5,6 @@ from sqlalchemy import create_engine
 from nltk.tokenize import word_tokenize
 import re
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
@@ -41,7 +40,6 @@ def tokenize(text):
 
     tokens = [tk for tk in tokens if tk not in stopwords.words('english')]
 
-    tokens = [PorterStemmer().stem(w) for w in tokens]
     tokens = [WordNetLemmatizer().lemmatize(w) for w in tokens]
 
     return tokens
@@ -56,7 +54,7 @@ def build_model():
               "vect__ngram_range" : [(1, 1), (1, 2)]
               }
 
-    cv = GridSearchCV(pipeline, param_grid = params, cv=2)
+    cv = GridSearchCV(pipeline, param_grid = params, cv=3)
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
