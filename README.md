@@ -2,10 +2,10 @@
 This is a webapp created using plotly and flask. The main goal of this project
  was to crate a machine learning model to classify disaster messages.
 ## Table of content
-* [General Info](general-info)
-* [Technologies](technologies)
-* [File Descriptions](file-descriptions)
-* [Acknowledgements](acknowledgements)
+* [General Info](#general-info)
+* [Technologies](#technologies)
+* [File Descriptions](#file-descriptions)
+* [Acknowledgements](#acknowledgements)
 
 ## General Info
 In this project, i used supervised models to classify disaster messagens into
