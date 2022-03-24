@@ -54,7 +54,7 @@ def build_model():
               "vect__ngram_range" : [(1, 1), (1, 2)]
               }
 
-    cv = GridSearchCV(pipeline, param_grid = params, cv=3)
+    cv = GridSearchCV(pipeline, param_grid = params, cv=2, verbose=3)
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
