@@ -15,7 +15,7 @@ organizations to classify messages of disasters and direct the the messages for 
 
 ## Technologies
 
-I used python 3.6.3 to code this project. You can find the package versions utilized [here](https://github.com/vitorscheifler/figure-eight-pipeline/blob/master/requirements.txt).
+I used python 3.9.7 to code this project. You can find the package versions utilized [here](https://github.com/vitorscheifler/figure-eight-pipeline/blob/master/requirements.txt).
 
 ## Usage
 To run this project, you will need to clone the repository in your local machine:
