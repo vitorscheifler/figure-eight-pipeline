@@ -25,7 +25,7 @@ git clone https://github.com/vitorscheifler/figure-eight-pipeline.git
 After cloning the repository, run the ETL pipeline to create a sqlite database:
 
 ```bash
-python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv
+python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
 ```
 
 Then, run the train_classifier.py to create the machine learning model:
@@ -43,18 +43,18 @@ You can copy the port and open the corresponding ip with port on the browser.
 
 ## File Descriptions
 * app
-| - template
-| |- master.html # main page of web app
-| |- go.html # classification result page of web app
-|- run.py # Flask file that runs app
+- | - template
+- | |- master.html # main page of web app
+- | |- go.html # classification result page of web app
+- |- run.py # Flask file that runs app
 * data
-|- disaster_categories.csv # data to process
-|- disaster_messages.csv # data to process
-|- process_data.py
-|- InsertDatabaseName.db # database to save clean data to
+- |- disaster_categories.csv # data to process
+- |- disaster_messages.csv # data to process
+- |- process_data.py
+- |- InsertDatabaseName.db # database to save clean data to
 * models
-|- train_classifier.py
-|- classifier.pkl # saved model
+- |- train_classifier.py
+- |- classifier.pkl # saved model
 README.md
 
 ## Acknowledgements
